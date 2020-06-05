@@ -1,0 +1,22 @@
+
+StreetMap:
+    load()
+        If there are N lines in the txt file with the map data, then load() has a big O of O(N)
+    getSegmentsThatStartWith()
+        If there are N geocoordinates and each geocoordinate maps to roughly S street segments, then
+        getSegmentsThatStartWith() has a big O of O(S). The lookup in the map for the geocoordinate is O(1), and it
+        takes O(S) to copy the found vector of streetsegments into the segs parameter.
+PointToPointRouter
+    generatePointToPointRoute()
+        I implemented A* for this function. I used maps to store the f and g scores of each geocoordinate. I used sets to store the
+        geocoordinates that I had already processed, and those that I had yet to process (open and closed sets). The reason I used a set for
+        the open set instead of a priority queue is that the stl priority required me to define a custom comparison function for my GeoObj
+        object, and the priority relied on its f score which is in a different data structure. For the algorithm, I have a helper function that
+        finds the geocoordinate with the highest rating in the fscore set (open set). I realize that this is not optimal.
+DeliveryOptimizer
+    optimizeDeliveryOrder()
+        I implemented simulationed annealing. The main data structure used, in addition to the vector of delivery requests that is
+        a parameter to the function, is a vector that stores the computed distances of the shortest paths between two geolocations.
+        This made the optimization much more efficient, so that I only had to compute the shortest path between any two geolocations
+        once.
+        
